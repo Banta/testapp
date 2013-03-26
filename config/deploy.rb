@@ -47,8 +47,9 @@ namespace :other do
 
   desc "precompile assets"
   task :assets do
-    run "cd #{current_path}; rake assets:precompile"
+    run "cd #{current_path}; bundle exec rake assets:precompile"
   end
 end
 
 after "deploy:update", "other:bundle"
+after "other:assets", "deploy:restart"
